@@ -69,8 +69,7 @@ NOTE: This will be a callback function for the tasks below
 */
 
 function inning() {
-  /*Code Here*/
-  let score = Math.round(Math.random() * 3);
+  let score = Math.floor(Math.random() * 3);
   return score;
 }
 inning();
@@ -89,9 +88,21 @@ Use the finalScore function below to do the following:
 }
 */
 
-function finalScore(/*code Here*/) {
-  /*Code Here*/
+function finalScore(inningCB, innings) {
+  let homeScore = 0;
+  let awayScore = 0;
+
+  for (let i = 1; i <= innings; i++) {
+    homeScore += inningCB();
+    awayScore += inningCB();
+  }
+
+  return {
+    Home: homeScore,
+    Away: awayScore,
+  };
 }
+finalScore(inning, 9);
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -101,6 +112,7 @@ Use the getInningScore() function below to do the following:
 function getInningScore(/*Your Code Here */) {
   /*Your Code Here */
 }
+getInningScore(finalScore);
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -108,7 +120,7 @@ Use the scoreboard function below to do the following:
   2. Receive the callback function `inning` from Task 2
   3. Receive a number of innings to be played
   4. Return an array where each of it's index values equals a string stating the
-  Home and Away team's scores for each inning.  Not the cummulative score.
+  Home and Away team's scores for each inning.  Not the cumulative score.
   5. If there's a tie at the end of the innings, add this message containing the score to the end of the array:  "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
      If there isn't a tie, add this message to the end of the array: "Final Score: Away 13 - Home 11"  (see no tie example below)
   
